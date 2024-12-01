@@ -1,9 +1,11 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '../../../utils/supabase/client'; // Adjust path based on your project structure
+import { createClient } from '../../../utils/supabase/client';
 import styles from './Blog.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+import landingImage from '../../../public/Images/landingpgimg.png';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -29,52 +31,43 @@ export default function Blog() {
     };
 
     fetchBlogs();
-  }, [supabase]);
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
   return (
     <div className={styles.blogContainer}>
-      {blogs.map((blog) => (
-        <div key={blog.id} className={styles.blogCard}>
-          
-          {blog.thumbnail ? (
+      {/* Landing Page */}
+      <div className={styles.landingPage}>
+        <h2>Simplify, Explore, and Connect with Blogify</h2>
+        <Image src={landingImage} alt="Landing Page" className={styles.landingImg} />
+        <i className="fa-solid fa-angles-down"></i>
+      </div>
+
+      {/* Recent Blogs */}
+      <h1 className={styles.sectionHeading}>RECENT BLOGS</h1>
+      <div className={styles.blogList}>
+        {blogs.map((blog) => (
+          <div key={blog.id} className={styles.blogCard}>
             <img
               src={blog.thumbnail}
               alt={blog.title}
               className={styles.thumbnail}
-              onError={(e) => {
-                e.target.style.display = 'none';
-                console.error('Error loading image:', blog.thumbnail);
-              }}
+              onError={(e) => (e.target.style.display = 'none')}
             />
-          ) : (
-            <p>No thumbnail available</p>
-          )}
-          <h2 className={styles.title}>{blog.title}</h2>
-          {/* <p className={styles.desc}>
-            {blog.desc.length > 100 ? `${blog.desc.slice(0, 100)}...` : blog.desc}
-          </p> */}
-          <div className={styles.tags}>
-            {blog.tag.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
+            <h2 className={styles.title}>{blog.title}</h2>
+            <p className={styles.desc}>{blog.desc.slice(0, 100)}...</p>
+            <div className={styles.blogFooter}>
+              <p className={styles.createdAt}>{new Date(blog.created_at).toLocaleDateString()}</p>
+              <Link href={`/viewblog/${blog.id}`} className={styles.readMoreLink}>
+                Read More
+              </Link>
+            </div>
           </div>
-          <p className={styles.createdAt}>
-            Created at: {new Date(blog.created_at).toLocaleDateString()}
-          </p>
-          <button
-            className={styles.readMoreButton}
-            onClick={() => router.push(`/viewblog/${blog.id}`)}
-          >
-            Read More
-          </button>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

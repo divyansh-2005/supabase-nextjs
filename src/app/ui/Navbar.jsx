@@ -26,7 +26,7 @@ export default function Navbar() {
 
             {user ? (
               <>
-                <Link href="AddBlog" className={styles.navLink}>Add Blog</Link>
+                <Link href="/AddBlog" className={styles.navLink}>Add Blog</Link>
 
                 {/* Profile Dropdown */}
                 <div className={styles.profileDropdown}>
@@ -38,6 +38,9 @@ export default function Navbar() {
                     <div className={styles.dropdownMenu}>
                       <Link href="/account" className={styles.dropdownItem}>
                         Update Profile
+                      </Link>
+                      <Link href="/myblogs" className={styles.dropdownItem}>
+                        My Blogs
                       </Link>
                       <form action="/auth/signout" method="post" className={styles.dropdownItem}>
                         <button type="submit" className={styles.signOutButton}>

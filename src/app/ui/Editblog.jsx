@@ -10,9 +10,10 @@ export default function EditBlog({ blogId }) {
   const [desc, setDesc] = useState('');
   const [thumbnail, setThumbnail] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [tag, setTag] = useState('');
+  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const predefinedTags = ['Technology', 'Health', 'Finance', 'Education', 'Travel', 'Other'];
   const supabase = createClient();
 
   useEffect(() => {
@@ -32,11 +33,20 @@ export default function EditBlog({ blogId }) {
       setTitle(data.title);
       setDesc(data.desc);
       setThumbnail(data.thumbnail);
-      setTag(data.tag.join(', '));
+      setTags(data.tag || []); // Ensure tags are an array
     };
 
     fetchBlog();
   }, [blogId, supabase]);
+
+  const handleTagChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setTags((prevTags) => [...prevTags, value]);
+    } else {
+      setTags((prevTags) => prevTags.filter((tag) => tag !== value));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +84,7 @@ export default function EditBlog({ blogId }) {
           title,
           desc,
           thumbnail: thumbnailUrl,
-          tag: tag.split(',').map((t) => t.trim()),
+          tag: tags, // Save selected tags as an array
         })
         .eq('id', blogId);
 
@@ -92,9 +102,9 @@ export default function EditBlog({ blogId }) {
 
   return (
     <div className={styles.editFormContainer}>
-        <div className={styles.container}>
-            <h1>Edit Blog</h1>
-        </div>
+      <div className={styles.container}>
+        <h1>Edit Blog</h1>
+      </div>
       {success && <p className={styles.editSuccessMessage}>Blog updated successfully!</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -110,7 +120,7 @@ export default function EditBlog({ blogId }) {
         </div>
         <div>
           <label htmlFor="desc" className={styles.editFormLabel}>Description:</label>
-          <input
+          <textarea
             id="desc"
             className={styles.editFormTextarea}
             value={desc}
@@ -134,14 +144,21 @@ export default function EditBlog({ blogId }) {
           />
         </div>
         <div>
-          <label htmlFor="tag" className={styles.editFormLabel}>Tags (comma-separated):</label>
-          <input
-            id="tag"
-            className={styles.editFormInput}
-            type="text"
-            value={tag}
-            onChange={(e) => setTag(e.target.value)}
-          />
+          <label className={styles.editFormLabel}>Tags:</label>
+          <div className={styles.tagContainer}>
+            {predefinedTags.map((t) => (
+              <div key={t} className={styles.tagItem}>
+                <input
+                  type="checkbox"
+                  id={t}
+                  value={t}
+                  checked={tags.includes(t)}
+                  onChange={handleTagChange}
+                />
+                <label htmlFor={t}>{t}</label>
+              </div>
+            ))}
+          </div>
         </div>
         <div>
           <button

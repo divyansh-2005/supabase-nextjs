@@ -1,0 +1,82 @@
+/* Container Styling */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: transparent; /* Dark background color */
+    color: #f1f1f1; /* Light text color */
+  }
+  
+  /* Heading Styling */
+  .heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff; /* Light text for headings */
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Blog List Styling */
+  .blogList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Individual Blog Item */
+  .blogItem {
+    padding: 1.5rem;
+    background-color: #333333; /* Dark background for each blog item */
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3); /* Darker shadow for items */
+  }
+  .blogItem:hover {
+    box-shadow: rgb(192 76 102) 2px 0px 25px, rgb(69 77 181) -2px 0px 25px;
+}
+  .blogTitle {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffffff; /* Light text for blog title */
+    margin-bottom: 0.5rem;
+  }
+  
+  .blogDescription {
+    font-size: 1rem;
+    color: #bbbbbb; /* Light gray text for descriptions */
+    margin-bottom: 1rem;
+  }
+  
+  /* Blog Action Buttons */
+  .blogActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .editButton,
+  .deleteButton {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .editButton {
+    background-color: #4CAF50; /* Green for Edit */
+  }
+  
+  .editButton:hover {
+    background-color: #45a049;
+  }
+  
+  .deleteButton {
+    background-color: #f44336; /* Red for Delete */
+  }
+  
+  .deleteButton:hover {
+    background-color: #e53935;
+  }
+  

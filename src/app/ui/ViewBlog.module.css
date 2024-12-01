@@ -1,122 +1,131 @@
+/* Blog Detail Container */
 .blogDetail {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    background-color: #ffffff; /* White background for better contrast */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
-  .blogDetail h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #111827; /* Darker text for better contrast */
-  }
-  .desc{
-    font-size: 1.25rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    color: #111827; /* Darker text for better contrast */
-  }
-  .creator {
-    font-size: 1rem;
-    color: #6b7280; /* Gray */
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-  
-  .thumbnail {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb; /* Light gray border */
-    object-fit: cover; /* Ensure the image maintains proportions */
-  }
-  
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .tag {
-    background-color: #1f2937; /* Dark */
-    color: #ffffff;
-    padding: 0.35rem 0.75rem; /* Slightly larger padding for better readability */
-    border-radius: 20px; /* More rounded for modern design */
-    font-size: 0.85rem;
-    font-weight: 500;
-  }
-  
-  .createdAt {
-    font-size: 0.9rem;
-    color: #4b5563; /* Gray */
-    margin-bottom: 1.5rem;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  
-  .editButton,
-  .deleteButton {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: transform 0.2s ease, background-color 0.2s ease; /* Add transition for smoother interactions */
-  }
-  
-  .editButton {
-    background-color: #2563eb; /* Blue */
-    color: #ffffff;
-  }
-  
-  .editButton:hover {
-    background-color: #1d4ed8; /* Darker blue */
-    transform: translateY(-2px); /* Subtle lift on hover */
-  }
-  
-  .deleteButton {
-    background-color: #dc2626; /* Red */
-    color: #ffffff;
-  }
-  
-  .deleteButton:hover {
-    background-color: #b91c1c; /* Darker red */
-    transform: translateY(-2px); /* Subtle lift on hover */
-  }
-  
-  /* Add responsive styles */
-  @media (max-width: 768px) {
-    .blogDetail {
-      padding: 1rem;
-    }
-  
-    .blogDetail h1 {
-      font-size: 2rem;
-    }
-  
-    .thumbnail {
-      margin-bottom: 1rem;
-    }
-  
-    .actions {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  
-    .editButton,
-    .deleteButton {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  
+  width: 100%;
+  min-height: 100vh;
+  background: url('../../../public/Images/blog-tempate-bg.png') center / cover no-repeat;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Blog Title */
+.blogDetail h1 {
+  font-family: 'Readex Pro', sans-serif;
+  font-size: 3rem;
+  font-weight: lighter;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+/* Creator Info */
+.creator {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: #ccc;
+  text-align: center;
+  /* margin-left: 15rem; */
+}
+
+/* Image Container (positioning relative to make rightSide absolute) */
+.imageContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 80%;
+  max-width: 100%;
+  margin: 1rem 0;
+  position: relative; /* Relative positioning to contain absolute elements */
+}
+
+/* Blog Thumbnail */
+.thumbnail {
+  width: 80%; /* Slightly reduce size if needed */
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: rgb(192 76 102) 2px 2px 20px, rgb(69 77 181) -2px -2px 20px;
+  margin-right: 1rem; /* Space between image and right-side content */
+}
+
+/* Right-side container for tags and created date */
+.rightSide {
+  position: absolute;  /* Position it absolute within .imageContainer */
+  top: 0;  
+  right: -8vw;  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 25%;  /* Adjust the width of the right-side container */
+  padding: 1rem; /* Add some padding to the right-side container */
+}
+
+/* Tags Section */
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: rgba(192, 76, 102, 0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Created Date */
+.createdAt {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* Blog Description */
+.desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd;
+  margin: 1rem 0;
+  text-align: justify;
+  width: 80%;
+}
+
+/* Actions (Edit and Delete Buttons) */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.editButton, .deleteButton {
+  font-family: 'Readex Pro', sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.editButton {
+  background-color: #a759bb;
+}
+
+.editButton:hover {
+  background-color: #c95be5;
+}
+
+.deleteButton {
+  background-color: #e63946;
+}
+
+.deleteButton:hover {
+  background-color: #ff5a5f;
+}

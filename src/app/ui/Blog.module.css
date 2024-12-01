@@ -1,76 +1,141 @@
+/* Blog Container */
 .blogContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
-}
-
-.blogCard {
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background: url('../../../public/Images/blog-tempate-bg.png') center / cover no-repeat;
+  color: white;
   display: flex;
   flex-direction: column;
-  text-align: left;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Landing Page */
+.landingPage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 90vh;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.landingPage h2 {
+  width: 40%;
+  font-size: 4rem;
+  font-weight: lighter;
+  font-family: 'Readex Pro', sans-serif;
+}
+
+.landingImg {
+  width: 40%;
+  height: auto;
+}
+
+.fa-angles-down {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: white;
+  animation: arrowDownAnimation 1s linear infinite;
+}
+
+/* Arrow Animation */
+@keyframes arrowDownAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Section Heading */
+.sectionHeading {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+/* Blog List */
+.blogList {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+/* Blog Card */
+.blogCard {
+  display: flex;
+  flex-direction: column; /* Arrange content vertically */
+  justify-content: flex-start; /* Ensure other content is at the top */
+  align-items: center;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.247);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blogCard:hover {
+  transform: translateY(-5px);
+  box-shadow: rgb(192 76 102) 2px 0px 25px, rgb(69 77 181) -2px 0px 25px;
 }
 
 .thumbnail {
   width: 100%;
-  height: 180px;
+  height: 150px;
   object-fit: cover;
-  border-bottom: 1px solid #e5e7eb;
 }
 
 .title {
-  font-size: 1.5rem;
-  margin: 10px;
-  color: #1f2937;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  font-family: 'Readex Pro', sans-serif;
 }
 
 .desc {
-  font-size: 1rem;
-  margin: 10px;
-  color: #4b5563;
+  font-size: 0.9rem;
+  margin: 0 1rem;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-.tags {
+.blogFooter {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: auto; /* Push the footer to the bottom */
+  width: 100%; /* Ensure it spans the full width of the card */
 }
 
-.tag {
-  background-color: #1f2937;
-  color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.875rem;
-}
 
 .createdAt {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 10px;
-  text-align: right;
+  font-size: 0.8rem;
+  color: #bbb;
 }
 
-.readMoreButton {
-  margin: 10px;
+.readMoreLink {
   padding: 0.5rem 1rem;
-  background-color: #1f2937;
-  color: #ffffff;
-  border: none;
+  background-color: #a759bb;
+  color: white;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 1rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
-.readMoreButton:hover {
-  background-color: #374151;
+.readMoreLink:hover {
+  background-color: #c95be5;
 }

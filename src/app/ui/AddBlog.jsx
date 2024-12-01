@@ -115,9 +115,9 @@ export default function AddBlog() {
 
   return (
     <div>
-      <h1>Add a New Blog</h1>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div>
+      <h1>Add a New Blog</h1>
           <label className={styles.formLabel} htmlFor="title">Title:</label>
           <input
             className={styles.formInput}
@@ -130,13 +130,13 @@ export default function AddBlog() {
         </div>
         <div>
           <label className={styles.formLabel} htmlFor="desc">Description:</label>
-          <input
+          <textarea
             className={styles.formTextarea}
             id="desc"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             required
-          ></input>
+          ></textarea>
         </div>
         <div>
           <label className={styles.formLabel} htmlFor="thumbnail">Thumbnail (Image):</label>

@@ -6,7 +6,6 @@ import Blog from "./ui/Blog";
 export default function Home() {
   return (
     <div>
-      <h1>Welcome to Blogify</h1>
       <Blog />
     </div>
   );

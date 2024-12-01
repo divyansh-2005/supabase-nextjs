@@ -1,0 +1,78 @@
+/* Container Styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Heading Styling */
+  .heading {
+    color: #ffffff; /* White text */
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Form Container */
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    box-shadow: rgb(192 76 102) 2px 2px 20px, rgb(69 77 181) -2px -2px 20px;
+  }
+  
+  /* Form Labels */
+  .formLabel {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ddd;
+  }
+  
+  /* Form Inputs */
+  .formInput {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .formInput:focus {
+    border-color: #a759bb; /* Match AddBlog/EditBlog */
+    outline: none;
+  }
+  
+  /* Form Button */
+  .formButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    background-color: #a759bb; /* Match AddBlog/EditBlog */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Readex Pro', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .formButton:hover {
+    background-color: #c95be5;
+  }
+  

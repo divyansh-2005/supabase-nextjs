@@ -81,18 +81,27 @@ export default function ViewBlog({ id }) {
   return (
     <div className={styles.blogDetail}>
       <h1>{blog.title}</h1>
-      {creator && <p className={styles.creator}>Created by: {creator}</p>}
-      {blog.thumbnail && <img src={blog.thumbnail} alt={blog.title} className={styles.thumbnail} />}
-      <p className={styles.desc}>{blog.desc}</p>
-      <div className={styles.tags}>
-        {blog.tag.map((tag, index) => (
-          <span key={index} className={styles.tag}>
-            {tag}
-          </span>
-        ))}
-      </div>
-      <p className={styles.createdAt}>Created on: {new Date(blog.created_at).toLocaleDateString()}</p>
+      {creator && <p className={styles.creator}>Author - {creator}</p>} 
 
+      <div className={styles.imageContainer}>
+        {blog.thumbnail && (
+          <img src={blog.thumbnail} alt={blog.title} className={styles.thumbnail} />
+        )}
+
+        <div className={styles.rightSide}>
+          <p className={styles.createdAt}>Date: {new Date(blog.created_at).toLocaleDateString()}</p>
+          <div className={styles.tags}>
+            {blog.tag.map((tag, index) => (
+              <span key={index} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className={styles.desc}>{blog.desc}</p>
+      
       {/* Show Edit and Delete buttons if the logged-in user matches the blog's user_id */}
       {user && user.id === blog.user_id && (
         <div className={styles.actions}>

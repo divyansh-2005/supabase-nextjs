@@ -1,69 +1,149 @@
+/* Container */
 .container h1 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #1f2937;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #ffffff; /* Match color with ViewBlog */
+  font-family: 'Readex Pro', sans-serif; /* Match font with ViewBlog */
+  font-size: 2rem; /* Adjust font size if needed */
+}
+
+/* Form Container */
+.editFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem; /* Slightly increase padding for consistency */
+  border-radius: 12px; /* Match the border radius */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  box-shadow: rgb(192 76 102) 2px 2px 20px, rgb(69 77 181) -2px -2px 20px; /* Consistent box-shadow */
+}
+
+/* Form Labels */
+.editFormLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ddd; /* Light text color */
+}
+
+/* Form Inputs and Textareas */
+.editFormInput,
+.editFormTextarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent white border */
+  border-radius: 8px; /* Match with other components */
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+  color: #ffffff; /* White text color */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Adjust Textarea Specific Styling */
+.editFormTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Button Styling */
+.editFormButton {
+  margin: 1.5rem 25vw 0;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  width: 10.5rem;
+  background-color: #a759bb; /* Match button color with ViewBlog */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px; /* Consistent border-radius */
+  cursor: pointer;
+  font-family: 'Readex Pro', sans-serif; /* Font consistency */
+  transition: all 0.3s ease-in-out;
+}
+
+.editFormButton:disabled {
+  background-color: #6b7280; /* Disabled color */
+  cursor: not-allowed;
+}
+
+.editFormButton:hover:not(:disabled) {
+  background-color: #c95be5; /* Match hover effect with ViewBlog buttons */
+}
+
+/* Success Message */
+.editSuccessMessage {
+  color: #32cd32; /* Use a bright green for success */
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Thumbnail Preview */
+.thumbnailPreview {
+  max-width: 100%;
+  max-height: 200px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+  border-radius: 12px; /* Consistent border-radius */
+  background-color: rgba(0, 0, 0, 0.3); /* Transparent background */
+}
+
+/* Tag Container */
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allow tags to wrap to the next line */
+  gap: 0.75rem; /* Add spacing between tags */
+  margin-top: 1rem;
+  justify-content: center; /* Center-align the tags */
+}
+
+/* Tag Item */
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Spacing between checkbox and label */
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+  border-radius: 20px; /* Rounded pill-shaped design */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* Checkbox */
+.tagItem input[type="checkbox"] {
+  accent-color: #a759bb; /* Match checkbox color with primary theme */
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Label */
+.tagItem label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ddd; /* Light text color */
+  cursor: pointer; /* Ensure cursor pointer for labels */
+  margin: 0; /* Reset any default margin */
+}
+
+/* Tag Item Hover Effect */
+.tagItem:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slightly lighter on hover */
+  border-color: #ffffff; /* Brighter border on hover */
+}
+
+/* Selected Tag Effect */
+.tagItem input[type="checkbox"]:checked + label {
+  color: #ffffff; /* White text for selected tags */
+  font-weight: bolder;
+}
+
+/* Adjust Alignment on Smaller Screens */
+@media (max-width: 600px) {
+  .tagContainer {
+    gap: 0.5rem; /* Adjust spacing for smaller screens */
   }
-  
-  .editFormContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    background-color: #f9fafb;
-  }
-  
-  .editFormLabel {
-    font-weight: bold;
-  }
-  
-  .editFormInput,
-  .editFormTextarea {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-  }
-  
-  .editFormTextarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  .editFormButton {
-    padding: 0.75rem;
-    font-size: 1rem;
-    background-color: #1f2937;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .editFormButton:disabled {
-    background-color: #6b7280;
-    cursor: not-allowed;
-  }
-  
-  .editFormButton:hover:not(:disabled) {
-    background-color: #374151;
-  }
-  
-  .editSuccessMessage {
-    color: green;
-    text-align: center;
-    font-weight: bold;
-  }
-  .thumbnailPreview {
-    max-width: 100%;
-    max-height: 200px;
-    margin-bottom: 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-  }
-    
+}
