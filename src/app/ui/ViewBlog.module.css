@@ -1,0 +1,122 @@
+.blogDetail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff; /* White background for better contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .blogDetail h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #111827; /* Darker text for better contrast */
+  }
+  .desc{
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #111827; /* Darker text for better contrast */
+  }
+  .creator {
+    font-size: 1rem;
+    color: #6b7280; /* Gray */
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb; /* Light gray border */
+    object-fit: cover; /* Ensure the image maintains proportions */
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tag {
+    background-color: #1f2937; /* Dark */
+    color: #ffffff;
+    padding: 0.35rem 0.75rem; /* Slightly larger padding for better readability */
+    border-radius: 20px; /* More rounded for modern design */
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .createdAt {
+    font-size: 0.9rem;
+    color: #4b5563; /* Gray */
+    margin-bottom: 1.5rem;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .editButton,
+  .deleteButton {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add transition for smoother interactions */
+  }
+  
+  .editButton {
+    background-color: #2563eb; /* Blue */
+    color: #ffffff;
+  }
+  
+  .editButton:hover {
+    background-color: #1d4ed8; /* Darker blue */
+    transform: translateY(-2px); /* Subtle lift on hover */
+  }
+  
+  .deleteButton {
+    background-color: #dc2626; /* Red */
+    color: #ffffff;
+  }
+  
+  .deleteButton:hover {
+    background-color: #b91c1c; /* Darker red */
+    transform: translateY(-2px); /* Subtle lift on hover */
+  }
+  
+  /* Add responsive styles */
+  @media (max-width: 768px) {
+    .blogDetail {
+      padding: 1rem;
+    }
+  
+    .blogDetail h1 {
+      font-size: 2rem;
+    }
+  
+    .thumbnail {
+      margin-bottom: 1rem;
+    }
+  
+    .actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .editButton,
+    .deleteButton {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  

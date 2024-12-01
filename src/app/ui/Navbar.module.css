@@ -1,0 +1,99 @@
+.navbar {
+  background-color: #1f2937; /* Dark background color */
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.navLink:hover {
+  color: #9ca3af; /* Hover effect */
+}
+
+/* Profile Icon */
+.profileIcon {
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Dropdown Menu */
+.profileDropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #1f2937; /* Dark menu */
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #4b5563; /* Darker hover effect */
+}
+
+/* Sign Out Button in Dropdown */
+.signOutButton {
+  color: white;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.signOutButton:hover {
+  color: #9ca3af; /* Hover effect */
+}

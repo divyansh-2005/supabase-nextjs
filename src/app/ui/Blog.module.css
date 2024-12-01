@@ -1,0 +1,76 @@
+.blogContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.blogCard {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 10px;
+  color: #1f2937;
+}
+
+.desc {
+  font-size: 1rem;
+  margin: 10px;
+  color: #4b5563;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px;
+}
+
+.tag {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
+
+.createdAt {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 10px;
+  text-align: right;
+}
+
+.readMoreButton {
+  margin: 10px;
+  padding: 0.5rem 1rem;
+  background-color: #1f2937;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+.readMoreButton:hover {
+  background-color: #374151;
+}
