@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '../../../utils/supabase/client';
 import { useSession } from '../context/SessionProvider'; // Adjust the path to your SessionContext
 import styles from './ViewBlog.module.css';
+import Navbar from './Navbar';
 
 export default function ViewBlog({ id }) {
   const [blog, setBlog] = useState(null);
@@ -79,6 +80,8 @@ export default function ViewBlog({ id }) {
   if (!blog) return <p>Blog not found!</p>;
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.blogDetail}>
       <h1>{blog.title}</h1>
       {creator && <p className={styles.creator}>Author - {creator}</p>} 
@@ -114,5 +117,6 @@ export default function ViewBlog({ id }) {
         </div>
       )}
     </div>
+    </>
   );
 }

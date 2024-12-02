@@ -1,13 +1,40 @@
 'use client';
 import styles from './Navbar.module.css';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa'; // Import profile icon
-import { useSession } from '../context/SessionProvider';
+import { createClient } from '../../../utils/supabase/client';
 
 export default function Navbar() {
-  const user = useSession();
+  const supabase = createClient();
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true); // Track session loading state
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Error fetching session:', error.message);
+      } else {
+        setSession(data.session); // Set session if available
+      }
+      setLoading(false);
+    };
+
+    fetchSession();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+      }
+    );
+
+    // Cleanup listener on unmount
+    return () => {
+      authListener?.subscription?.unsubscribe();
+    };
+  }, [supabase]);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
@@ -24,7 +51,7 @@ export default function Navbar() {
           <div className={styles.navLinks}>
             <Link href="/" className={styles.navLink}>Home</Link>
 
-            {user ? (
+            {session ? (
               <>
                 <Link href="/AddBlog" className={styles.navLink}>Add Blog</Link>
 

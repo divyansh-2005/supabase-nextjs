@@ -1,5 +1,6 @@
 import AccountForm from './account-form'
 import { createClient } from '../../../utils/supabase/server'
+import Navbar from '../ui/Navbar'
 
 export default async function Account() {
   const supabase = await createClient()
@@ -9,5 +10,10 @@ export default async function Account() {
   } = await supabase.auth.getUser()
   // console.log(user);
   
-  return <AccountForm user={user} />
+  return (
+    <>
+    <Navbar />
+    <AccountForm user={user} />
+    </>
+  )
 }

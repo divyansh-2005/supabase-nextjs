@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSession } from '../context/SessionProvider'; 
 import { createClient } from '../../../utils/supabase/client';
 import styles from './AddBlog.module.css';
+import Navbar from './Navbar';
 
 export default function AddBlog() {
   const user = useSession(); // Get the current user
@@ -114,6 +115,8 @@ export default function AddBlog() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div>
@@ -173,5 +176,6 @@ export default function AddBlog() {
       </form>
       {success && <p>Blog added successfully!</p>}
     </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '../../../utils/supabase/client';
 import styles from './EditBlog.module.css';
+import Navbar from './Navbar';
 
 export default function EditBlog({ blogId }) {
   const [blog, setBlog] = useState(null);
@@ -101,6 +102,8 @@ export default function EditBlog({ blogId }) {
   if (!blog) return <div>Loading...</div>;
 
   return (
+    <>
+    <Navbar />
     <div className={styles.editFormContainer}>
       <div className={styles.container}>
         <h1>Edit Blog</h1>
@@ -171,5 +174,6 @@ export default function EditBlog({ blogId }) {
         </div>
       </form>
     </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { login } from './actions';
 import styles from './login.module.css';
+import Navbar from '../ui/Navbar';
 
 export default function LoginPage() {
   useEffect(() => {
@@ -14,6 +15,8 @@ export default function LoginPage() {
   }, []);
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.container}>
       <form method="POST" className={styles.formContainer}>
         <div>
@@ -46,5 +49,6 @@ export default function LoginPage() {
         </button>
       </form>
     </div>
+    </>
   );
 }

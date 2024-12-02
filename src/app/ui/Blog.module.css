@@ -2,7 +2,6 @@
 .blogContainer {
   width: 100%;
   min-height: 100vh;
-  background: url('../../../public/Images/blog-tempate-bg.png') center / cover no-repeat;
   color: white;
   display: flex;
   flex-direction: column;

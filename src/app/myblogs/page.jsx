@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from '../context/SessionProvider';
 import { createClient } from '../../../utils/supabase/client';
 import styles from './MyBlogs.module.css'; // Add appropriate CSS for styling
+import Navbar from '../ui/Navbar';
 
 export default function MyBlogs() {
   const user = useSession(); // Get the current user from context
@@ -45,6 +46,8 @@ export default function MyBlogs() {
   }, [user, supabase]);
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.container}>
       <h1 className={styles.heading}>My Blogs</h1>
 
@@ -74,6 +77,7 @@ export default function MyBlogs() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

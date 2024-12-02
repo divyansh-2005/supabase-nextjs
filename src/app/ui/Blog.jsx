@@ -6,6 +6,7 @@ import styles from './Blog.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import landingImage from '../../../public/Images/landingpgimg.png';
+import Navbar from './Navbar';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -38,6 +39,8 @@ export default function Blog() {
   }
 
   return (
+    <>
+    <Navbar />
     <div className={styles.blogContainer}>
       {/* Landing Page */}
       <div className={styles.landingPage}>
@@ -69,5 +72,6 @@ export default function Blog() {
         ))}
       </div>
     </div>
+    </>
   );
 }

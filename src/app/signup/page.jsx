@@ -4,6 +4,8 @@ import styles from './signup.module.css';
 
 export default function SignupPage() {
   return (
+    <>
+    <Navbar/>
     <div className={styles.container}>
       <h1 className={styles.heading}>Sign Up</h1>
       <form method="POST" className={styles.formContainer}>
@@ -36,5 +38,6 @@ export default function SignupPage() {
         </button>
       </form>
     </div>
+    </>
   );
 }
