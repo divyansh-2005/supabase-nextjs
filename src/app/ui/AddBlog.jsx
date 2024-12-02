@@ -109,9 +109,9 @@ export default function AddBlog() {
 
   return (
     <div>
-      <h1>Add a New Blog</h1>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div>
+      <h1>Add a New Blog</h1>
           <label htmlFor="title" className={styles.formLabel}>
             Title:
           </label>
@@ -129,7 +129,14 @@ export default function AddBlog() {
           <label htmlFor="desc" className={styles.formLabel}>
             Description:
           </label>
-          <JoditEditor
+          <textarea
+            className={styles.formTextarea}
+            id="desc"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+            required
+          ></textarea>
+          {/* <JoditEditor
   value={desc}
   config={{
     readonly: false,
@@ -139,7 +146,7 @@ export default function AddBlog() {
     toolbarButtonSize: 'small',
   }}
   onChange={handleEditorChange}
-/>
+/> */}
 
         </div>
 
