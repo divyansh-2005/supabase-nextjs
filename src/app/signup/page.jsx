@@ -1,4 +1,5 @@
 'use client';
+import Navbar from '../ui/Navbar';
 import { signup } from './actions';
 import styles from './signup.module.css';
 
