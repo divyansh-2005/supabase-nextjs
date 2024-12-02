@@ -1,26 +1,29 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useState, useCallback } from 'react';
-import { useSession } from '../context/SessionProvider'; // Custom hook for session
+import { useState } from 'react';
+import { useSession } from '../context/SessionProvider'; 
 import { createClient } from '../../../utils/supabase/client';
 import styles from './AddBlog.module.css';
-
-// Dynamically import JoditEditor to avoid SSR issues
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 export default function AddBlog() {
   const user = useSession(); // Get the current user
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const supabase = createClient();
+  const [imageFile,setImageFile] = useState(null);
 
   const predefinedTags = ['Technology', 'Health', 'Finance', 'Education', 'Travel', 'Other'];
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+       
+    if (file) {
+      setImageFile(file);
+    }
+  };
 
   const handleTagChange = (e) => {
     const { value, checked } = e.target;
@@ -31,18 +34,8 @@ export default function AddBlog() {
     }
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setThumbnail(file);
-    }
-  };
-
-  const handleEditorChange = useCallback((newContent) => {
-    setDesc(newContent);
-  }, []);
-
   const handleSubmit = async (e) => {
+    const supabase = createClient();
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
@@ -56,51 +49,64 @@ export default function AddBlog() {
     try {
       let thumbnailUrl = '';
 
-      if (thumbnail) {
-        const fileExtension = thumbnail.name.split('.').pop();
+      // Check if there is an image file
+      if (imageFile) {
+        const fileExtension = imageFile.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExtension}`;
+        
+        console.log('Uploading image:', fileName); // Debug log
 
         // Upload the image file to Supabase Storage
         const { data: uploadData, error: uploadError } = await supabase
           .storage
-          .from('thumbnail') // Replace 'thumbnail' with your bucket name
-          .upload(fileName, thumbnail);
+          .from('thumbnail') // 'thumbnail' is the bucket name
+          .upload(fileName, imageFile);
 
         if (uploadError) {
+          console.error('Upload error:', uploadError);
           throw new Error(`Image upload failed: ${uploadError.message}`);
         }
 
-        const { data, error } = supabase.storage
+        const { data, error } = supabase
+          .storage
           .from('thumbnail')
           .getPublicUrl(fileName);
 
-        if (error) {
+        if (!data) {
+          console.error('Get public URL error:', error);
           throw new Error(`Failed to get public URL: ${error.message}`);
         }
 
         thumbnailUrl = data.publicUrl;
+        console.log('PublicURL:', data.publicUrl);
       }
 
+      // Insert the blog post into the 'blogs' table
       const { data, error } = await supabase.from('blogs').insert([
         {
           user_id: user.id,
           title,
           desc,
-          thumbnail: thumbnailUrl,
-          tags, // Array of tags
+          thumbnail:thumbnailUrl,
+          tag: tags, // Array of tags
         },
       ]);
 
       if (error) {
+        console.error('Insert blog error:', error);
         throw new Error(`Failed to insert blog: ${error.message}`);
       }
+
+      console.log('Blog added successfully:', data);
 
       setSuccess(true);
       setTitle('');
       setDesc('');
-      setThumbnail(null);
-      setTags([]);
+      setThumbnailUrl('');
+      setTags('');
+      setImageFile(null);
     } catch (error) {
+      console.error('Error adding blog:', error.message);
       alert(`Error adding blog: ${error.message}`);
     } finally {
       setLoading(false);
@@ -112,23 +118,18 @@ export default function AddBlog() {
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div>
       <h1>Add a New Blog</h1>
-          <label htmlFor="title" className={styles.formLabel}>
-            Title:
-          </label>
+          <label className={styles.formLabel} htmlFor="title">Title:</label>
           <input
+            className={styles.formInput}
             id="title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className={styles.formInput}
             required
           />
         </div>
-
         <div>
-          <label htmlFor="desc" className={styles.formLabel}>
-            Description:
-          </label>
+          <label className={styles.formLabel} htmlFor="desc">Description:</label>
           <textarea
             className={styles.formTextarea}
             id="desc"
@@ -136,62 +137,41 @@ export default function AddBlog() {
             onChange={(e) => setDesc(e.target.value)}
             required
           ></textarea>
-          {/* <JoditEditor
-  value={desc}
-  config={{
-    readonly: false,
-    placeholder: 'Write your blog content here...',
-    theme: 'dark',
-    toolbarSticky: false,
-    toolbarButtonSize: 'small',
-  }}
-  onChange={handleEditorChange}
-/> */}
-
         </div>
-
         <div>
-          <label htmlFor="thumbnail" className={styles.formLabel}>
-            Thumbnail (Image):
-          </label>
+          <label className={styles.formLabel} htmlFor="thumbnail">Thumbnail (Image):</label>
           <input
+            className={styles.formInput}
             id="thumbnail"
             type="file"
-            accept="image/*"
+            accept='image/*'
             onChange={handleImageChange}
-            className={styles.formInput}
           />
         </div>
-
         <div>
-          <label className={styles.formLabel}>Tags:</label>
+          <label className={styles.formLabel} htmlFor="tag">Tags:</label>
           <div className={styles.tagContainer}>
-            {predefinedTags.map((tag) => (
-              <div key={tag} className={styles.tagItem}>
+            {predefinedTags.map((t) => (
+              <div key={t} className={styles.tagItem}>
                 <input
                   type="checkbox"
-                  id={tag}
-                  value={tag}
-                  checked={tags.includes(tag)}
+                  id={t}
+                  value={t}
+                  checked={tags.includes(t)}
                   onChange={handleTagChange}
                 />
-                <label htmlFor={tag}>{tag}</label>
+                <label htmlFor={t}>{t}</label>
               </div>
             ))}
           </div>
         </div>
-
         <div>
-          <button
-            type="submit"
-            className={styles.formButton}
-            disabled={loading}
-          >
+          <button className={styles.formButton} type="submit" disabled={loading}>
             {loading ? 'Adding...' : 'Add Blog'}
           </button>
         </div>
       </form>
-      {success && <p className={styles.successMessage}>Blog added successfully!</p>}
+      {success && <p>Blog added successfully!</p>}
     </div>
   );
 }
